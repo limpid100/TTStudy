@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_hanzi"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        app:backgroundTint="@color/white"
+        app:cornerRadius="10dp"
+        app:icon="@drawable/ic_character"
+        app:iconGravity="textStart"
+        app:iconSize="80dp"
+        app:iconTint="@color/primary"
+        app:layout_constraintEnd_toStartOf="@id/btn_pinyin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/primary"
+        app:strokeWidth="2dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_pinyin"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:backgroundTint="@color/white"
+        app:cornerRadius="10dp"
+        app:icon="@drawable/ic_pinyin"
+        app:iconGravity="textStart"
+        app:iconSize="80dp"
+        app:iconTint="@color/primary"
+        app:layout_constraintEnd_toStartOf="@id/btn_suanshu"
+        app:layout_constraintStart_toEndOf="@id/btn_hanzi"
+        app:layout_constraintTop_toTopOf="@id/btn_hanzi"
+        app:strokeColor="@color/primary"
+        app:strokeWidth="2dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_suanshu"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:backgroundTint="@color/white"
+        app:cornerRadius="10dp"
+        app:icon="@drawable/ic_suanshu"
+        app:iconGravity="textStart"
+        app:iconSize="80dp"
+        app:iconTint="@color/primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_pinyin"
+        app:layout_constraintTop_toTopOf="@id/btn_hanzi"
+        app:strokeColor="@color/primary"
+        app:strokeWidth="2dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
