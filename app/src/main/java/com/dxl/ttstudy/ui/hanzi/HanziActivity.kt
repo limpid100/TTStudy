@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import com.dxl.ttstudy.R
 import com.dxl.ttstudy.databinding.ActivityHanziBinding
+import com.dxl.ttstudy.util.SoundUtils.playSound
 import com.dxl.ttstudy.util.lllog
 
 class HanziActivity : AppCompatActivity() {
@@ -49,9 +51,11 @@ class HanziActivity : AppCompatActivity() {
 
         listOf(vb.ivRight, vb.ivWrong).forEach {
             it.setOnClickListener { _ ->
+                val isRight = it.id == vb.ivRight.id
+                playSound(if (isRight) R.raw.right else R.raw.wrong)
                 val index = vb.viewPager.currentItem
                 val hanzi = pagerAdapter.hanziList.getOrNull(index) ?: return@setOnClickListener
-                viewModel.updateExercise(hanzi, it.id == vb.ivRight.id)
+                viewModel.updateExercise(hanzi, isRight)
                 if (index < pagerAdapter.itemCount - 1) {
                     vb.viewPager.currentItem = index + 1
                 }
