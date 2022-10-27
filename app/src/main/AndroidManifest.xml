@@ -30,7 +30,8 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name="com.dxl.ttstudy.hanzi.HanziActivity" />
+        <activity android:name="com.dxl.ttstudy.ui.hanzi.HanziActivity" />
+        <activity android:name="com.dxl.ttstudy.ui.pinyin.PinyinActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

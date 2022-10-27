@@ -25,13 +25,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        tools:text="huang"
+        android:fontFamily="@font/oppo_sans"
         android:textColor="#FF5722"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/tvHanzi"
         app:layout_constraintEnd_toEndOf="@id/tvHanzi"
-        app:layout_constraintStart_toStartOf="@id/tvHanzi" />
+        app:layout_constraintStart_toStartOf="@id/tvHanzi"
+        tools:text="huang" />
 
     <TextView
         android:id="@+id/tvWords"

@@ -24,11 +24,11 @@
             android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toStartOf="@id/ivRight"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="15dp"
             android:layout_marginStart="10dp"
+            android:layout_marginBottom="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toStartOf="parent">
 
 
             <View
@@ -45,6 +45,7 @@
             android:text="做题次数10 正确4 正确率60%"
             android:id="@+id/tvInfo"
             android:layout_marginBottom="10dp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@id/llProgress"
             app:layout_constraintBottom_toTopOf="@id/llProgress"
             android:layout_width="wrap_content"
