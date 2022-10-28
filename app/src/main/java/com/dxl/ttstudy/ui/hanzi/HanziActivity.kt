@@ -12,13 +12,14 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.dxl.ttstudy.R
 import com.dxl.ttstudy.databinding.ActivityHanziBinding
-import com.dxl.ttstudy.util.SoundUtils.playSound
-import com.dxl.ttstudy.util.lllog
+import com.dxl.ttstudy.util.SoundUtils
 
 class HanziActivity : AppCompatActivity() {
 
+    val soundUtils = SoundUtils(this)
+
     companion object {
-        fun start(context: Context, type:Int) =
+        fun start(context: Context, type: Int) =
             context.startActivity(Intent(context, HanziActivity::class.java).apply {
                 putExtra("type", type)
             })
@@ -52,7 +53,7 @@ class HanziActivity : AppCompatActivity() {
         listOf(vb.ivRight, vb.ivWrong).forEach {
             it.setOnClickListener { _ ->
                 val isRight = it.id == vb.ivRight.id
-                playSound(if (isRight) R.raw.right else R.raw.wrong)
+                soundUtils.playSound(if (isRight) R.raw.right else R.raw.wrong)
                 val index = vb.viewPager.currentItem
                 val hanzi = pagerAdapter.hanziList.getOrNull(index) ?: return@setOnClickListener
                 viewModel.updateExercise(hanzi, isRight)
@@ -73,9 +74,10 @@ class HanziActivity : AppCompatActivity() {
         val exerciseCount = hanzi.exerciseCount
         val rightCount = hanzi.rightCount
         val rightRate = if (exerciseCount <= 0) 0f else rightCount.toFloat() / exerciseCount
-        vb.tvInfo.text = if (exerciseCount <= 0) "" else "做题次数$exerciseCount  正确$rightCount  正确率${(rightRate*100).toInt()}%"
+        vb.tvInfo.text =
+            if (exerciseCount <= 0) "" else "做题次数$exerciseCount  正确$rightCount  正确率${(rightRate * 100).toInt()}%"
 
-        ValueAnimator.ofFloat(0f,vb.llProgress.width * rightRate).apply {
+        ValueAnimator.ofFloat(0f, vb.llProgress.width * rightRate).apply {
             setTarget(vb.viewProgress)
             duration = 1000
             addUpdateListener {

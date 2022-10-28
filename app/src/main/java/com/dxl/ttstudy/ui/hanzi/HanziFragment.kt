@@ -8,8 +8,11 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.dxl.ttstudy.databinding.FragmentHanziBinding
+import com.dxl.ttstudy.util.PinyinUtil.toPinyinVoiceFileName
+import com.dxl.ttstudy.util.lllog
 
 class HanziFragment : Fragment() {
+
     companion object {
         fun newInstance(hanzi: Hanzi): HanziFragment {
             return HanziFragment().apply {
@@ -19,6 +22,8 @@ class HanziFragment : Fragment() {
     }
 
     private val viewModel by viewModels<HanziViewModel>(this::requireActivity)
+
+    private val soundUtils by lazy { (requireActivity() as HanziActivity).soundUtils }
 
 
     private lateinit var vb: FragmentHanziBinding
@@ -42,6 +47,9 @@ class HanziFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         refreshView()
+        vb.tvHanzi.setOnClickListener {
+            soundUtils.read(hanzi)
+        }
         viewModel.hanziUpdateLiveData.observe(viewLifecycleOwner) {
             if (it.id == hanzi?.id) {
                 hanzi = it
@@ -55,6 +63,8 @@ class HanziFragment : Fragment() {
         vb.tvHanzi.text = hanzi?.character
         vb.tvPinyin.text = hanzi?.pinyin
         vb.tvWords.text = hanzi?.words
+
+
     }
 
 
