@@ -1,5 +1,6 @@
 package com.dxl.ttstudy.ui.hanzi
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.dxl.ttstudy.R
 import com.dxl.ttstudy.databinding.FragmentHanziBinding
 import com.dxl.ttstudy.util.PinyinUtil.toPinyinVoiceFileName
 import com.dxl.ttstudy.util.lllog
@@ -49,6 +51,12 @@ class HanziFragment : Fragment() {
         refreshView()
         vb.tvHanzi.setOnClickListener {
             soundUtils.read(hanzi)
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && viewModel.type == 0) {
+            resources.getFont(R.font.kaiti).apply {
+                vb.tvWords.typeface = this
+                vb.tvHanzi.typeface = this
+            }
         }
         viewModel.hanziUpdateLiveData.observe(viewLifecycleOwner) {
             if (it.id == hanzi?.id) {

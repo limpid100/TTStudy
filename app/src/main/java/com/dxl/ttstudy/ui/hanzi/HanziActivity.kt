@@ -74,15 +74,20 @@ class HanziActivity : AppCompatActivity() {
         val exerciseCount = hanzi.exerciseCount
         val rightCount = hanzi.rightCount
         val rightRate = if (exerciseCount <= 0) 0f else rightCount.toFloat() / exerciseCount
-        vb.tvInfo.text =
-            if (exerciseCount <= 0) "" else "做题次数$exerciseCount  正确$rightCount  正确率${(rightRate * 100).toInt()}%"
+        vb.tvCount?.text = exerciseCount.toString()
+        vb.tvRightCount?.text = rightCount.toString()
+        vb.tvRate?.text = "${(rightRate * 100).toInt()}%"
 
-        ValueAnimator.ofFloat(0f, vb.llProgress.width * rightRate).apply {
+
+
+        val itemW = vb.llProgress.width / pagerAdapter.itemCount
+
+        ValueAnimator.ofInt(itemW * position, itemW * position + itemW).apply {
             setTarget(vb.viewProgress)
             duration = 1000
             addUpdateListener {
                 vb.viewProgress.layoutParams = vb.viewProgress.layoutParams.apply {
-                    width = (it.animatedValue as Float).toInt()
+                    width = it.animatedValue as Int
                 }
             }
             start()
